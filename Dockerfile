@@ -15,6 +15,8 @@ RUN : 'Install packages' \
       && dpkg -i hugo_${DOCKERBUILD_HUGO_VERSION}_Linux-64bit.deb \
       && : 'Scan ssh keys for GitHub' \
       && mkdir -p ~/.ssh/ \
-      && ssh-keyscan github.com 2> /dev/null >> ~/.ssh/known_hosts
+      && ssh-keyscan github.com 2> /dev/null >> ~/.ssh/known_hosts \
+      && : 'Clean up' \
+      && apt clean
 
 ENTRYPOINT ["/bin/bash"]
